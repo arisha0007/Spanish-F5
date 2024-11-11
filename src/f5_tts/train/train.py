@@ -81,7 +81,7 @@ def main():
         learning_rate,
         num_warmup_updates=num_warmup_updates,
         save_per_updates=save_per_updates,
-        checkpoint_path=checkpoint_path,  # Guardar directamente en la carpeta Valentino de Google Drive
+        checkpoint_path = "/content/drive/MyDrive/Valentino"        
         batch_size=batch_size_per_gpu,
         batch_size_type=batch_size_type,
         max_samples=max_samples,
