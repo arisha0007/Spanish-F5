@@ -1,7 +1,6 @@
 # training script.
 
 from importlib.resources import files
-import os
 
 from f5_tts.model import CFM, DiT, Trainer, UNetT
 from f5_tts.model.dataset import load_dataset
@@ -37,9 +36,6 @@ num_warmup_updates = 20000  # warmup steps
 save_per_updates = 50000  # save checkpoint per steps
 last_per_steps = 5000  # save last checkpoint per steps
 
-# Ruta directa en Google Drive para guardar los modelos
-checkpoint_path = "/content/drive/MyDrive/Valentino"
-
 # model params
 if exp_name == "F5TTS_Base":
     wandb_resume_id = None
@@ -52,6 +48,7 @@ elif exp_name == "E2TTS_Base":
 
 
 # ----------------------------------------------------------------------- #
+
 
 def main():
     if tokenizer == "custom":
@@ -76,24 +73,24 @@ def main():
     )
 
     trainer = Trainer(
-    model,
-    epochs,
-    learning_rate,
-    num_warmup_updates=num_warmup_updates,
-    save_per_updates=save_per_updates,
-    checkpoint_path="/content/drive/MyDrive/Valentino",  # Ruta para guardar los checkpoints
-    batch_size=batch_size_per_gpu,
-    batch_size_type=batch_size_type,
-    max_samples=max_samples,
-    grad_accumulation_steps=grad_accumulation_steps,
-    max_grad_norm=max_grad_norm,
-    wandb_project="CFM-TTS",
-    wandb_run_name=exp_name,
-    wandb_resume_id=wandb_resume_id,
-    last_per_steps=last_per_steps,
-    log_samples=True,
-    mel_spec_type=mel_spec_type,
-)
+        model,
+        epochs,
+        learning_rate,
+        num_warmup_updates=num_warmup_updates,
+        save_per_updates=save_per_updates,
+        checkpoint_path=str(files("f5_tts").joinpath(f"../../ckpts/{exp_name}")),
+        batch_size=batch_size_per_gpu,
+        batch_size_type=batch_size_type,
+        max_samples=max_samples,
+        grad_accumulation_steps=grad_accumulation_steps,
+        max_grad_norm=max_grad_norm,
+        wandb_project="CFM-TTS",
+        wandb_run_name=exp_name,
+        wandb_resume_id=wandb_resume_id,
+        last_per_steps=last_per_steps,
+        log_samples=True,
+        mel_spec_type=mel_spec_type,
+    )
 
     train_dataset = load_dataset(dataset_name, tokenizer, mel_spec_kwargs=mel_spec_kwargs)
     trainer.train(
