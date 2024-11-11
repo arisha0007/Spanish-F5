@@ -76,24 +76,24 @@ def main():
     )
 
     trainer = Trainer(
-        model,
-        epochs,
-        learning_rate,
-        num_warmup_updates=num_warmup_updates,
-        save_per_updates=save_per_updates,
-        checkpoint_path=checkpoint_path,  # Ruta para guardar los checkpoints
-        batch_size=batch_size_per_gpu,
-        batch_size_type=batch_size_type,
-        max_samples=max_samples,
-        grad_accumulation_steps=grad_accumulation_steps,
-        max_grad_norm=max_grad_norm,
-        wandb_project="CFM-TTS",
-        wandb_run_name=exp_name,
-        wandb_resume_id=wandb_resume_id,
-        last_per_steps=last_per_steps,
-        log_samples=True,
-        mel_spec_type=mel_spec_type,
-    )
+    model,
+    epochs,
+    learning_rate,
+    num_warmup_updates=num_warmup_updates,
+    save_per_updates=save_per_updates,
+    checkpoint_path="/content/drive/MyDrive/Valentino",  # Ruta para guardar los checkpoints
+    batch_size=batch_size_per_gpu,
+    batch_size_type=batch_size_type,
+    max_samples=max_samples,
+    grad_accumulation_steps=grad_accumulation_steps,
+    max_grad_norm=max_grad_norm,
+    wandb_project="CFM-TTS",
+    wandb_run_name=exp_name,
+    wandb_resume_id=wandb_resume_id,
+    last_per_steps=last_per_steps,
+    log_samples=True,
+    mel_spec_type=mel_spec_type,
+)
 
     train_dataset = load_dataset(dataset_name, tokenizer, mel_spec_kwargs=mel_spec_kwargs)
     trainer.train(
