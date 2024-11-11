@@ -37,8 +37,8 @@ num_warmup_updates = 20000  # warmup steps
 save_per_updates = 50000  # save checkpoint per steps
 last_per_steps = 5000  # save last checkpoint per steps
 
-# Define la ruta para guardar los modelos entrenados en Google Drive
-model_save_path = "/content/drive/MyDrive/Valentino"
+# Ruta directa en Google Drive para guardar los modelos
+checkpoint_path = "/content/drive/MyDrive/Valentino"
 
 # model params
 if exp_name == "F5TTS_Base":
@@ -52,7 +52,6 @@ elif exp_name == "E2TTS_Base":
 
 
 # ----------------------------------------------------------------------- #
-
 
 def main():
     if tokenizer == "custom":
@@ -82,7 +81,7 @@ def main():
         learning_rate,
         num_warmup_updates=num_warmup_updates,
         save_per_updates=save_per_updates,
-        checkpoint_path=model_save_path,  # Guardar en Google Drive en la carpeta "Valentino"
+        checkpoint_path=checkpoint_path,  # Guardar directamente en la carpeta Valentino de Google Drive
         batch_size=batch_size_per_gpu,
         batch_size_type=batch_size_type,
         max_samples=max_samples,
