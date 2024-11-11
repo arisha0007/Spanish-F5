@@ -78,8 +78,7 @@ def main():
         learning_rate,
         num_warmup_updates=num_warmup_updates,
         save_per_updates=save_per_updates,
-        checkpoint_path = str(files("f5_tts").joinpath(f"/content/drive/MyDrive/valentino/{exp_name}")),
-
+        checkpoint_path=str(files("f5_tts").joinpath(f"../../ckpts/{exp_name}")),
         batch_size=batch_size_per_gpu,
         batch_size_type=batch_size_type,
         max_samples=max_samples,
