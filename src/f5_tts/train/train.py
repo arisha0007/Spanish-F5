@@ -1,6 +1,7 @@
 # training script.
 
 from importlib.resources import files
+import os
 
 from f5_tts.model import CFM, DiT, Trainer, UNetT
 from f5_tts.model.dataset import load_dataset
@@ -35,6 +36,9 @@ epochs = 11  # use linear decay, thus epochs control the slope
 num_warmup_updates = 20000  # warmup steps
 save_per_updates = 50000  # save checkpoint per steps
 last_per_steps = 5000  # save last checkpoint per steps
+
+# Define la ruta para guardar los modelos entrenados en Google Drive
+model_save_path = "/content/drive/MyDrive/Valentino"
 
 # model params
 if exp_name == "F5TTS_Base":
@@ -78,7 +82,7 @@ def main():
         learning_rate,
         num_warmup_updates=num_warmup_updates,
         save_per_updates=save_per_updates,
-        checkpoint_path=str(files("f5_tts").joinpath(f"../../ckpts/{exp_name}")),
+        checkpoint_path=model_save_path,  # Guardar en Google Drive en la carpeta "Valentino"
         batch_size=batch_size_per_gpu,
         batch_size_type=batch_size_type,
         max_samples=max_samples,
