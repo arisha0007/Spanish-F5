@@ -84,7 +84,8 @@ def main():
             if args.pretrain is None:
                 ckpt_path = str(cached_path("hf://SWivid/F5-TTS/F5TTS_Base/model_1200000.pt"))
             else:
-                ckpt_path = args.pretrain
+                ckpt_path = args.file_checkpoint_train
+
     elif args.exp_name == "E2TTS_Base":
         wandb_resume_id = None
         model_cls = UNetT
@@ -93,7 +94,8 @@ def main():
             if args.pretrain is None:
                 ckpt_path = str(cached_path("hf://SWivid/E2-TTS/E2TTS_Base/model_1200000.pt"))
             else:
-                ckpt_path = args.pretrain
+                ckpt_path = args.file_checkpoint_train
+
 
     if args.finetune:
         if not os.path.isdir(checkpoint_path):
