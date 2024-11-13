@@ -1537,7 +1537,7 @@ If you encounter a memory error, try reducing the batch size per GPU to a smalle
             with gr.Row():
                 ch_finetune = bt_create = gr.Checkbox(label="Finetune", value=True)
                 tokenizer_file = gr.Textbox(label="Tokenizer File", value="")
-                file_checkpoint_train = gr.Textbox(label="Path to the Pretrained Checkpoint", value="")
+                file_checkpoint_train = gr.Textbox(label="Path to the file_checkpoint_train", value="")
 
             with gr.Row():
                 exp_name = gr.Radio(label="Model", choices=["F5TTS_Base", "E2TTS_Base"], value="F5TTS_Base")
